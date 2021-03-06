@@ -9,6 +9,7 @@ class CustomRadioButton<T> extends StatefulWidget {
     this.buttonTextStyle = const ButtonTextStyle(),
     this.autoWidth = false,
     this.radioButtonValue,
+    this.otherValue,
     this.unSelectedColor,
     this.unSelectedBorderColor,
     this.padding = 3,
@@ -67,6 +68,7 @@ class CustomRadioButton<T> extends StatefulWidget {
   final ButtonTextStyle buttonTextStyle;
 
   final void Function(T) radioButtonValue;
+  final void Function(String) otherValue;
 
   ///Unselected Color of the button
   final Color unSelectedColor;
@@ -129,6 +131,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
           // key: Key('onboard_${labelText}_textField'),
           keyboardType: TextInputType.name,
           style: TextStyle(color: Colors.black),
+          onChanged: (string) => widget.otherValue(string),
           decoration: InputDecoration(
             labelText: 'Please type here',
           ),
@@ -174,7 +177,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
                     ),
               onPressed: () {
                 widget.radioButtonValue(e);
-                if (widget.buttonLables[index] == 'other') {
+                if (widget.buttonLables[index].toLowerCase() == 'other') {
                   setState(() {
                     otherSelected = true;
                   });
