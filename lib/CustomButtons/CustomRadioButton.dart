@@ -23,6 +23,7 @@ class CustomRadioButton<T> extends StatefulWidget {
     this.elevation = 10,
     this.defaultSelected,
     this.customShape,
+    this.otherSelected = false,
     this.absoluteZeroSpacing = false,
     this.wrapAlignment = WrapAlignment.start,
   })  : assert(buttonLables.length == buttonValues.length,
@@ -42,6 +43,8 @@ class CustomRadioButton<T> extends StatefulWidget {
 
   ///This option will make sure that there is no spacing in between buttons
   final bool absoluteZeroSpacing;
+
+  final bool otherSelected;
 
   ///Default value is 35
   final double height;
@@ -100,7 +103,11 @@ class CustomRadioButton<T> extends StatefulWidget {
 class _CustomRadioButtonState extends State<CustomRadioButton> {
   String _currentSelectedLabel;
 
-  Color borderColor(index) => (_currentSelectedLabel == widget.buttonLables[index] ? widget.selectedBorderColor : widget.unSelectedBorderColor) ?? Theme.of(context).primaryColor;
+  Color borderColor(index) =>
+      (_currentSelectedLabel == widget.buttonLables[index]
+          ? widget.selectedBorderColor
+          : widget.unSelectedBorderColor) ??
+      Theme.of(context).primaryColor;
 
   @override
   void initState() {
@@ -117,6 +124,17 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
   List<Widget> _buildButtonsColumn() {
     return widget.buttonValues.map((e) {
       int index = widget.buttonValues.indexOf(e);
+      if (widget.buttonLables[index].toLowerCase() == 'other') {
+        return TextField(
+          controller: TextEditingController(),
+          // key: Key('onboard_${labelText}_textField'),
+          keyboardType: TextInputType.name,
+          style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(
+            labelText: 'Please type here',
+          ),
+        );
+      }
       return Padding(
         padding: EdgeInsets.all(widget.padding),
         child: Card(
@@ -138,14 +156,14 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
               shape: widget.enableShape
                   ? widget.customShape == null
                       ? OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: borderColor(index), width: 1),
+                          borderSide:
+                              BorderSide(color: borderColor(index), width: 1),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                         )
                       : widget.customShape
                   : OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: borderColor(index), width: 1),
+                      borderSide:
+                          BorderSide(color: borderColor(index), width: 1),
                       borderRadius: BorderRadius.zero,
                     ),
               onPressed: () {
@@ -198,14 +216,13 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
             shape: widget.enableShape
                 ? widget.customShape == null
                     ? OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: borderColor(index), width: 1),
+                        borderSide:
+                            BorderSide(color: borderColor(index), width: 1),
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       )
                     : widget.customShape
                 : OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: borderColor(index), width: 1),
+                    borderSide: BorderSide(color: borderColor(index), width: 1),
                     borderRadius: BorderRadius.zero,
                   ),
             onPressed: () {
