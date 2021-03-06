@@ -127,7 +127,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: TextField(
-          controller: TextEditingController(),
+          // controller: TextEditingController(),
           // key: Key('onboard_${labelText}_textField'),
           keyboardType: TextInputType.name,
           style: TextStyle(color: Colors.black),
