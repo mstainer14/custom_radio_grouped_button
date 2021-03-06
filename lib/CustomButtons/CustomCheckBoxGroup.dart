@@ -180,16 +180,17 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
                       borderRadius: BorderRadius.zero,
                     ),
               onPressed: () {
-                if (selectedLables.length < widget.maxChecked) {
-                  if (selectedLables.contains(e)) {
-                    selectedLables.remove(e);
+                if (selectedLables.contains(e)) {
+                  selectedLables.remove(e);
+                } else {
+                  if (selectedLables.length < widget.maxChecked) {
+                    selectedLables.add(e);
                   } else {
+                    selectedLables.removeAt(0);
                     selectedLables.add(e);
                   }
-                } else {
-                  selectedLables.removeAt(0);
-                  selectedLables.add(e);
                 }
+
                 if (selectedLables.contains('Other')) {
                   setState(() {
                     otherSelected = true;
