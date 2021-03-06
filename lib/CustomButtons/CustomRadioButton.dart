@@ -23,7 +23,6 @@ class CustomRadioButton<T> extends StatefulWidget {
     this.elevation = 10,
     this.defaultSelected,
     this.customShape,
-    this.otherSelected = false,
     this.absoluteZeroSpacing = false,
     this.wrapAlignment = WrapAlignment.start,
   })  : assert(buttonLables.length == buttonValues.length,
@@ -43,8 +42,6 @@ class CustomRadioButton<T> extends StatefulWidget {
 
   ///This option will make sure that there is no spacing in between buttons
   final bool absoluteZeroSpacing;
-
-  final bool otherSelected;
 
   ///Default value is 35
   final double height;
@@ -102,6 +99,7 @@ class CustomRadioButton<T> extends StatefulWidget {
 
 class _CustomRadioButtonState extends State<CustomRadioButton> {
   String _currentSelectedLabel;
+  bool otherSelected = false;
 
   Color borderColor(index) =>
       (_currentSelectedLabel == widget.buttonLables[index]
@@ -121,22 +119,36 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
     }
   }
 
+  List<Widget> _buildButtonsColumnWithOther() {
+    List<Widget> widgets = _buildButtonsColumn();
+    widgets.add(TextField(
+      controller: TextEditingController(),
+      // key: Key('onboard_${labelText}_textField'),
+      keyboardType: TextInputType.name,
+      style: TextStyle(color: Colors.black),
+      decoration: InputDecoration(
+        labelText: 'Please type here',
+      ),
+    ));
+    return widgets;
+  }
+
   List<Widget> _buildButtonsColumn() {
     return widget.buttonValues.map((e) {
       int index = widget.buttonValues.indexOf(e);
-      if (_currentSelectedLabel != null) {
-        if (_currentSelectedLabel.toLowerCase() == 'other') {
-          return TextField(
-            controller: TextEditingController(),
-            // key: Key('onboard_${labelText}_textField'),
-            keyboardType: TextInputType.name,
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-              labelText: 'Please type here',
-            ),
-          );
-        }
-      }
+      // if (_currentSelectedLabel != null) {
+      //   if (_currentSelectedLabel.toLowerCase() == 'other') {
+      //     return TextField(
+      //       controller: TextEditingController(),
+      //       // key: Key('onboard_${labelText}_textField'),
+      //       keyboardType: TextInputType.name,
+      //       style: TextStyle(color: Colors.black),
+      //       decoration: InputDecoration(
+      //         labelText: 'Please type here',
+      //       ),
+      //     );
+      //   }
+      // }
       return Padding(
         padding: EdgeInsets.all(widget.padding),
         child: Card(
@@ -270,7 +282,8 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
           child: CustomListViewSpacing(
             spacing: widget.spacing,
             scrollDirection: Axis.vertical,
-            children: _buildButtonsColumn(),
+            children:
+                otherSelected ? _buildButtonsColumn() : _buildButtonsColumnWithOther(),
           ),
         ),
       );
