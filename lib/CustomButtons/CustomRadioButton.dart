@@ -99,7 +99,7 @@ class CustomRadioButton<T> extends StatefulWidget {
 
 class _CustomRadioButtonState extends State<CustomRadioButton> {
   String _currentSelectedLabel;
-  bool otherSelected = true;
+  bool otherSelected = false;
 
   Color borderColor(index) =>
       (_currentSelectedLabel == widget.buttonLables[index]
@@ -174,6 +174,15 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
                     ),
               onPressed: () {
                 widget.radioButtonValue(e);
+                if (widget.buttonLables[index] == 'other') {
+                  setState(() {
+                    otherSelected = true;
+                  });
+                } else {
+                  setState(() {
+                    otherSelected = false;
+                  });
+                }
                 setState(() {
                   _currentSelectedLabel = widget.buttonLables[index];
                 });
