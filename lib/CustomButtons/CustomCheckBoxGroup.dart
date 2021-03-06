@@ -30,6 +30,7 @@ class CustomCheckBoxGroup<T> extends StatefulWidget {
     this.otherValues,
     this.absoluteZeroSpacing = false,
     this.enableButtonWrap = false,
+    this.maxChecked,
   })  : assert(buttonLables.length == buttonValuesList.length,
             "Button values list and button lables list should have same number of eliments "),
         assert(unSelectedColor != null, "Unselected color cannot be null"),
@@ -50,6 +51,8 @@ class CustomCheckBoxGroup<T> extends StatefulWidget {
 
   ///Styling class for label
   final ButtonTextStyle buttonTextStyle;
+
+  final int maxChecked;
 
   ///Default value is 35
   final double height;
@@ -135,7 +138,7 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
           style: TextStyle(color: Colors.black),
           onChanged: (strings) => widget.otherValues(strings.split(',')),
           decoration: InputDecoration(
-            labelText: 'Separate activities by a comma(,)',
+            labelText: 'Separate activities by a comma ( , )',
           ),
         ),
       ),
@@ -177,9 +180,14 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
                       borderRadius: BorderRadius.zero,
                     ),
               onPressed: () {
-                if (selectedLables.contains(e)) {
-                  selectedLables.remove(e);
+                if (selectedLables.length < widget.maxChecked) {
+                  if (selectedLables.contains(e)) {
+                    selectedLables.remove(e);
+                  } else {
+                    selectedLables.add(e);
+                  }
                 } else {
+                  selectedLables.removeAt(0);
                   selectedLables.add(e);
                 }
                 if (selectedLables.contains('Other')) {
