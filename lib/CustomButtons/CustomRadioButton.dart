@@ -121,15 +121,20 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
 
   List<Widget> _buildButtonsColumnWithOther() {
     List<Widget> widgets = _buildButtonsColumn();
-    widgets.add(TextField(
-      controller: TextEditingController(),
-      // key: Key('onboard_${labelText}_textField'),
-      keyboardType: TextInputType.name,
-      style: TextStyle(color: Colors.black),
-      decoration: InputDecoration(
-        labelText: 'Please type here',
+    widgets.add(
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          controller: TextEditingController(),
+          // key: Key('onboard_${labelText}_textField'),
+          keyboardType: TextInputType.name,
+          style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(
+            labelText: 'Please type here',
+          ),
+        ),
       ),
-    ));
+    );
     return widgets;
   }
 
@@ -269,8 +274,9 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
           child: CustomListViewSpacing(
             spacing: widget.spacing,
             scrollDirection: Axis.vertical,
-            children:
-                otherSelected ? _buildButtonsColumnWithOther() : _buildButtonsColumn(),
+            children: otherSelected
+                ? _buildButtonsColumnWithOther()
+                : _buildButtonsColumn(),
           ),
         ),
       );
