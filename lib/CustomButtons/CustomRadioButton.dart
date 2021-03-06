@@ -99,7 +99,7 @@ class CustomRadioButton<T> extends StatefulWidget {
 
 class _CustomRadioButtonState extends State<CustomRadioButton> {
   String _currentSelectedLabel;
-  bool otherSelected = false;
+  bool otherSelected = true;
 
   Color borderColor(index) =>
       (_currentSelectedLabel == widget.buttonLables[index]
@@ -136,19 +136,6 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
   List<Widget> _buildButtonsColumn() {
     return widget.buttonValues.map((e) {
       int index = widget.buttonValues.indexOf(e);
-      // if (_currentSelectedLabel != null) {
-      //   if (_currentSelectedLabel.toLowerCase() == 'other') {
-      //     return TextField(
-      //       controller: TextEditingController(),
-      //       // key: Key('onboard_${labelText}_textField'),
-      //       keyboardType: TextInputType.name,
-      //       style: TextStyle(color: Colors.black),
-      //       decoration: InputDecoration(
-      //         labelText: 'Please type here',
-      //       ),
-      //     );
-      //   }
-      // }
       return Padding(
         padding: EdgeInsets.all(widget.padding),
         child: Card(
@@ -283,7 +270,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
             spacing: widget.spacing,
             scrollDirection: Axis.vertical,
             children:
-                otherSelected ? _buildButtonsColumn() : _buildButtonsColumnWithOther(),
+                otherSelected ? _buildButtonsColumnWithOther() : _buildButtonsColumn(),
           ),
         ),
       );
