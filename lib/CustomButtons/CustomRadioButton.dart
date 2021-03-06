@@ -124,7 +124,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
   List<Widget> _buildButtonsColumn() {
     return widget.buttonValues.map((e) {
       int index = widget.buttonValues.indexOf(e);
-      if (widget.buttonLables[index].toLowerCase() == 'other') {
+      if (_currentSelectedLabel.toLowerCase() == 'other') {
         return TextField(
           controller: TextEditingController(),
           // key: Key('onboard_${labelText}_textField'),
