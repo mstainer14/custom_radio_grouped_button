@@ -124,16 +124,18 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
   List<Widget> _buildButtonsColumn() {
     return widget.buttonValues.map((e) {
       int index = widget.buttonValues.indexOf(e);
-      if (_currentSelectedLabel.toLowerCase() == 'other') {
-        return TextField(
-          controller: TextEditingController(),
-          // key: Key('onboard_${labelText}_textField'),
-          keyboardType: TextInputType.name,
-          style: TextStyle(color: Colors.black),
-          decoration: InputDecoration(
-            labelText: 'Please type here',
-          ),
-        );
+      if (_currentSelectedLabel != null) {
+        if (_currentSelectedLabel.toLowerCase() == 'other') {
+          return TextField(
+            controller: TextEditingController(),
+            // key: Key('onboard_${labelText}_textField'),
+            keyboardType: TextInputType.name,
+            style: TextStyle(color: Colors.black),
+            decoration: InputDecoration(
+              labelText: 'Please type here',
+            ),
+          );
+        }
       }
       return Padding(
         padding: EdgeInsets.all(widget.padding),
