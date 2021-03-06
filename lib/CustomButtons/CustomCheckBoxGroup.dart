@@ -27,6 +27,7 @@ class CustomCheckBoxGroup<T> extends StatefulWidget {
     this.unSelectedColor,
     this.unSelectedBorderColor,
     this.customShape,
+    this.otherValues,
     this.absoluteZeroSpacing = false,
     this.enableButtonWrap = false,
   })  : assert(buttonLables.length == buttonValuesList.length,
