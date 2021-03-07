@@ -300,6 +300,7 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
       return Container(
         height: widget.height * (widget.buttonLables.length * 1.5) +
             widget.padding * 2 * widget.buttonLables.length,
+        
         child: Center(
           child: CustomListViewSpacing(
             spacing: widget.spacing,
