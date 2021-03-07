@@ -25,6 +25,7 @@ class CustomRadioButton<T> extends StatefulWidget {
     this.defaultSelected,
     this.customShape,
     this.absoluteZeroSpacing = false,
+    this.currentOtherText = 'other',
     this.wrapAlignment = WrapAlignment.start,
   })  : assert(buttonLables.length == buttonValues.length,
             "Button values list and button lables list should have same number of eliments "),
@@ -37,6 +38,8 @@ class CustomRadioButton<T> extends StatefulWidget {
 
   ///Orientation of the Button Group
   final bool horizontal;
+
+  final String currentOtherText;
 
   ///Values of button
   final List<T> buttonValues;
@@ -177,7 +180,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
                     ),
               onPressed: () {
                 widget.radioButtonValue(e);
-                if (widget.buttonLables[index].toLowerCase() == 'other') {
+                if (widget.buttonLables[index].toLowerCase() == widget.currentOtherText) {
                   setState(() {
                     otherSelected = true;
                   });

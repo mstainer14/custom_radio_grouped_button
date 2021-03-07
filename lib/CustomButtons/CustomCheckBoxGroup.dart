@@ -137,6 +137,7 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
           keyboardType: TextInputType.name,
           style: TextStyle(color: Colors.black),
           onChanged: (strings) => widget.otherValues(strings.split(',')),
+          // enabled: selectedLables.length < widget.maxChecked,
           decoration: InputDecoration(
             labelText: 'Separate activities by a comma ( , )',
           ),
@@ -194,6 +195,7 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
                 if (selectedLables.contains('Other')) {
                   setState(() {
                     otherSelected = true;
+                    // selectedLables.clear();
                   });
                 } else {
                   setState(() {
