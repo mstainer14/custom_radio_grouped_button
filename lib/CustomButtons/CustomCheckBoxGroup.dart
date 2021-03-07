@@ -148,7 +148,7 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
   }
 
   List<Widget> _buildButtonsColumn() {
-    if (List<String>.from(widget.defaultSelected).contains('Other')) {
+    if (selectedLables.contains('Other')) {
       setState(() {
         otherSelected = true;
       });
