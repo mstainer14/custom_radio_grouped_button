@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class CustomListViewSpacing extends StatelessWidget {
@@ -14,7 +16,11 @@ class CustomListViewSpacing extends StatelessWidget {
 
   Widget build(BuildContext context) {
     if (otherSelected) {
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      Timer(
+        Duration(seconds: 1),
+        () => _scrollController
+            .jumpTo(_scrollController.position.maxScrollExtent),
+      );
 
       return ListView(
         scrollDirection: scrollDirection,
