@@ -180,7 +180,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
                     ),
               onPressed: () {
                 widget.radioButtonValue(e);
-                if (widget.buttonLables[index].toLowerCase() == widget.currentOtherText) {
+                if (widget.buttonLables[index].toLowerCase() == 'other' || widget.defaultSelected.toString().toLowerCase() == 'other') {
                   setState(() {
                     otherSelected = true;
                   });
