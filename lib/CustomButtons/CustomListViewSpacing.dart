@@ -9,7 +9,7 @@ class CustomListViewSpacing extends StatelessWidget {
   CustomListViewSpacing(
       {@required this.children,
       this.spacing = 0.0,
-      this.otherSelected,
+      this.otherSelected = false,
       this.scrollDirection = Axis.vertical});
 
   Widget build(BuildContext context) {

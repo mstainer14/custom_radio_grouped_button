@@ -305,6 +305,7 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
           child: CustomListViewSpacing(
             spacing: widget.spacing,
             scrollDirection: Axis.vertical,
+            otherSelected: otherSelected,
             children: otherSelected
                 ? _buildButtonsColumnWithOther()
                 : _buildButtonsColumn(),
