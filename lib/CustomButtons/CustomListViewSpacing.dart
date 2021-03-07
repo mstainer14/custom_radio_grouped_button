@@ -17,7 +17,7 @@ class CustomListViewSpacing extends StatelessWidget {
   Widget build(BuildContext context) {
     if (otherSelected) {
       Timer(
-        Duration(seconds: 1),
+        Duration(milliseconds: 1),
         () => _scrollController
             .jumpTo(_scrollController.position.maxScrollExtent),
       );
