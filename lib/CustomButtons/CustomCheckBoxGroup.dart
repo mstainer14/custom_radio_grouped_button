@@ -148,6 +148,12 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
   }
 
   List<Widget> _buildButtonsColumn() {
+    if (List<String>.from(widget.defaultSelected).contains('Other')) {
+      setState(() {
+        otherSelected = true;
+      });
+    }
+
     return widget.buttonValuesList.map((e) {
       int index = widget.buttonValuesList.indexOf(e);
       return Padding(
@@ -300,7 +306,6 @@ class _CustomCheckBoxGroupState extends State<CustomCheckBoxGroup> {
       return Container(
         height: widget.height * (widget.buttonLables.length * 1.5) +
             widget.padding * 2 * widget.buttonLables.length,
-        
         child: Center(
           child: CustomListViewSpacing(
             spacing: widget.spacing,
