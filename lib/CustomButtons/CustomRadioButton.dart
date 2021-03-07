@@ -145,6 +145,12 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
   }
 
   List<Widget> _buildButtonsColumn() {
+    if (widget.defaultSelected.toString().toLowerCase() == 'other') {
+      setState(() {
+        otherSelected = true;
+      });
+    }
+
     return widget.buttonValues.map((e) {
       int index = widget.buttonValues.indexOf(e);
       return Padding(
@@ -180,7 +186,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
                     ),
               onPressed: () {
                 widget.radioButtonValue(e);
-                if (widget.buttonLables[index].toLowerCase() == 'other' || widget.defaultSelected.toString().toLowerCase() == 'other') {
+                if (widget.buttonLables[index].toLowerCase() == 'other') {
                   setState(() {
                     otherSelected = true;
                   });
